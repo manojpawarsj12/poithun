@@ -12,4 +12,4 @@ To install this package with conda run:
 conda install -c anaconda pyaudio
 
 # ScreenShot 
-![alt text](https://raw.githubusercontent.com/manojpawarsj12/dictionary-using-python/master/Screenshot%20(12).png)
+![alt text](https://raw.githubusercontent.com/manojpawarsj12/poithun/master/PyDictionary/Screenshot%20(12).png)
