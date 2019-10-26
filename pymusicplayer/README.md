@@ -25,4 +25,4 @@ Usage:
   python musicgui.py 
 
 Screenshot:
-![alt text](https://raw.githubusercontent.com/manojpawarsj12/pygame-music-player/master/Screenshot%20(10).png)
+![alt text](https://raw.githubusercontent.com/manojpawarsj12/poithun/master/pymusicplayer/Screenshot%20(10).png)
