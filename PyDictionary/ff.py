@@ -7,17 +7,20 @@ import playsound
 
 data = json.load(open("data.json"))
 
+
 def translate(w):
     w = w.lower()
     if w in data:
         return data[w]
     elif len(get_close_matches(w, data.keys())) > 0:
-        
-        tts = gTTS(text="Did you mean %s instead? Enter Y if yes, or N if no: " % get_close_matches(w, data.keys())[0], lang='en')
+
+        tts = gTTS(text="Did you mean %s instead? Enter Y if yes, or N if no: " %
+                   get_close_matches(w, data.keys())[0], lang='en')
         tts.save("goo.mp3")
         os.system("mpg321 goo.mp3")
         playsound.playsound('goo.mp3', True)
-        yn = input("Did you mean %s instead? Enter Y if yes, or N if no: " % get_close_matches(w, data.keys())[0])
+        yn = input("Did you mean %s instead? Enter Y if yes, or N if no: " %
+                   get_close_matches(w, data.keys())[0])
         if yn == "y":
             return data[get_close_matches(w, data.keys())[0]]
         elif yn == "n":
@@ -26,6 +29,8 @@ def translate(w):
             return "We didn't understand your entry."
     else:
         return "The word doesn't exist. Please double check it."
+
+
 def speech():
     r = sr.Recognizer()
     with sr.Microphone() as source:
@@ -34,14 +39,14 @@ def speech():
         try:
             text = r.recognize_google(audio)
             print("You said : {}".format(text))
-           
-            output=translate(text)
+
+            output = translate(text)
             return output
         except:
             print("Sorry could not recognize what you said")
-    
 
-output=speech()
+
+output = speech()
 if type(output) == list:
     for item in output:
         print(item)

@@ -6,8 +6,9 @@ import pygame.freetype
 from pygame.locals import *
 import sys
 
+
 class Window(object):
-    
+
     instance = None
 
     def __new__(cls, *args, **kwds):
@@ -68,7 +69,7 @@ class Window(object):
 
 def show_usage_message():
     print("Usage: python music.py <file of audiofile with extention>")
-   
+
 
 def main(file_path):
     """Play an audio file with pygame.mixer.music"""
@@ -117,8 +118,9 @@ def main(file_path):
         finally:
             pygame.mixer.quit()
 
+
 if __name__ == '__main__':
-# Check the only command line argument, a file path
+    # Check the only command line argument, a file path
     if len(sys.argv) != 2:
         show_usage_message()
     else:
