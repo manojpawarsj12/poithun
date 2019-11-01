@@ -18,7 +18,7 @@ def sed(text):
         title, video_url = tag.text, url + tag['href']
         if 'googleads' not in video_url:
             return normalize_special_char(title), video_url
-            download(normalize_special_char(title), video_url)
+            
 
 
 def download(title, video_url):
