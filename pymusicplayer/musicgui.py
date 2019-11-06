@@ -80,7 +80,7 @@ button6 = tkr.Button(player, width=5, height=3,
 button7 = tkr.Button(player, width=5, height=3,
                      text='select a file ', command=file)
 button8 = tkr.Button(player, width=5, height=3,
-                     text='download', command=downloads)
+                     text='download songs', command=downloads)
 
 
 playlist = tkr.Listbox(player, highlightcolor="blue", selectmode=tkr.SINGLE)
