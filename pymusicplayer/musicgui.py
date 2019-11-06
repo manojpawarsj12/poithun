@@ -49,7 +49,11 @@ def file():
         exit(0)
     print(os.getcwd)
     songlist = os.listdir()
+    songlist1 = list()
     for item in songlist:
+        if item.endswith('.mp3'):
+            songlist1.append(item)
+    for item in songlist1:
         pos = 0
         playlist.insert(pos, item)
         pos += 1
@@ -58,7 +62,7 @@ def file():
 def downloads():
     a = simpledialog.askstring(
         prompt="enter name of song that you want to download", title="music download")
-    os.system('python songdownload.py --d {0}'.format(a))
+    os.system('python songdownload.py dl {0}'.format(a))
 # defining player
 
 

@@ -3,11 +3,13 @@ from bs4 import BeautifulSoup
 from unicodedata import normalize
 import youtube_dl
 import argparse
+
+
 def normalize_special_char(txt):
     return normalize('NFKD', txt).encode('ASCII', 'ignore').decode('ASCII')
 
 
-def sed(args):
+def sed(text):
 
     url = 'https://www.youtube.com'
 
@@ -33,10 +35,11 @@ def download(title, video_url):
         ydl.download([video_url])
     return ydl_opts["outtmpl"]
 
+
 parser = argparse.ArgumentParser()
-parser.add_argument('--d', 
-                        help='Enter song name to download')
+parser.add_argument('dl',
+                    help='Enter song name to download', type=str, nargs='+')
 args = parser.parse_args()
-text=args.d 
+text = ' '.join(args.dl)
 tittle, video_link = sed(text)
 download(tittle, video_link)
