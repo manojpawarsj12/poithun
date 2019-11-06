@@ -1,42 +1,41 @@
 # imports
 import tkinter as tkr
-import pygame
+from pygame import mixer
 import mutagen.mp3
 import os
 from tkinter import filedialog, simpledialog
 
 
 def play():
-    pygame.init()
     mp3 = mutagen.mp3.MP3(playlist.get(tkr.ACTIVE))
-    pygame.mixer.init(frequency=mp3.info.sample_rate)
-    pygame.mixer.music.load(playlist.get(tkr.ACTIVE))
+    mixer.init(frequency=mp3.info.sample_rate)
+    mixer.music.load(playlist.get(tkr.ACTIVE))
     var.set(playlist.get(tkr.ACTIVE))
-    pygame.mixer.music.play()
+    mixer.music.play()
 
 
 def end():
-    pygame.mixer.music.stop()
+    mixer.music.stop()
 
 
 def pause():
-    pygame.mixer.music.pause()
+    mixer.music.pause()
 
 
 def contin():
-    pygame.mixer.music.unpause()
+    mixer.music.unpause()
 
 
 def increase():
-    volume = pygame.mixer.music.get_volume()
+    volume = mixer.music.get_volume()
     volume = volume+0.1
-    pygame.mixer.music.set_volume(volume)
+    mixer.music.set_volume(volume)
 
 
 def decrease():
-    volume = pygame.mixer.music.get_volume()
+    volume = mixer.music.get_volume()
     volume = volume-0.1
-    pygame.mixer.music.set_volume(volume)
+    mixer.music.set_volume(volume)
 
 
 def file():
