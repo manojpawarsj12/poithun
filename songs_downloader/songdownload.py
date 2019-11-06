@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 from unicodedata import normalize
 import youtube_dl
+import argparse
 
 
 def normalize_special_char(txt):
@@ -18,7 +19,6 @@ def sed(text):
         title, video_url = tag.text, url + tag['href']
         if 'googleads' not in video_url:
             return normalize_special_char(title), video_url
-            
 
 
 def download(title, video_url):
@@ -36,5 +36,10 @@ def download(title, video_url):
     return ydl_opts["outtmpl"]
 
 
-tittle, video_link = sed(input("Enter A song name "))
-title = download(tittle, video_link)
+parser = argparse.ArgumentParser()
+parser.add_argument('dl',
+                    help='Enter song name to download', type=str, nargs='+')
+args = parser.parse_args()
+text = ' '.join(args.dl)
+tittle, video_link = sed(text)
+download(tittle, video_link)
