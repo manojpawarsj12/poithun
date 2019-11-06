@@ -1,13 +1,15 @@
 # imports
 import tkinter as tkr
 import pygame
+import mutagen.mp3
 import os
-from tkinter import filedialog
+from tkinter import filedialog, simpledialog
 
 
 def play():
     pygame.init()
-    pygame.mixer.init(frequency=44100)
+    mp3 = mutagen.mp3.MP3(playlist.get(tkr.ACTIVE))
+    pygame.mixer.init(frequency=mp3.info.sample_rate)
     pygame.mixer.music.load(playlist.get(tkr.ACTIVE))
     var.set(playlist.get(tkr.ACTIVE))
     pygame.mixer.music.play()
@@ -51,12 +53,18 @@ def file():
         pos = 0
         playlist.insert(pos, item)
         pos += 1
+
+
+def downloads():
+    a = simpledialog.askstring(
+        prompt="enter name of song that you want to download", title="music download")
+    os.system('python songdownload.py --d {0}'.format(a))
 # defining player
 
 
 player = tkr.Tk()
 player.title("audio player")
-player.geometry("700x500")
+player.geometry("700x600")
 button1 = tkr.Button(player, width=5, height=3, text='play', command=play)
 button2 = tkr.Button(player, width=5, height=3, text='stop', command=end)
 button3 = tkr.Button(player, width=5, height=3,
@@ -68,6 +76,10 @@ button6 = tkr.Button(player, width=5, height=3,
                      text='decrease volume', command=decrease)
 button7 = tkr.Button(player, width=5, height=3,
                      text='select a file ', command=file)
+button8 = tkr.Button(player, width=5, height=3,
+                     text='download', command=downloads)
+
+
 playlist = tkr.Listbox(player, highlightcolor="blue", selectmode=tkr.SINGLE)
 label1 = tkr.LabelFrame(player, text="Song Name")
 label1.pack(fill='both', expand='yes')
@@ -80,6 +92,7 @@ button4.pack(fill='x')
 button2.pack(fill='x')
 button5.pack(fill='x')
 button6.pack(fill='x')
+button8.pack(fill='x')
 songtitle.pack()
 playlist.pack(fill='both', expand="yes")
 
