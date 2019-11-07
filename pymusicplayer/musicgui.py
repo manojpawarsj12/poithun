@@ -1,14 +1,16 @@
 # imports
-import tkinter as tkr
-from pygame import mixer
-import mutagen.mp3
 import os
+import tkinter as tkr
 from tkinter import filedialog, simpledialog
+
+import mutagen.mp3
+from pygame import mixer
 
 
 def play():
     mp3 = mutagen.mp3.MP3(playlist.get(tkr.ACTIVE))
-    mixer.init(frequency=mp3.info.sample_rate,size=-16, channels=8, buffer=4096)
+    mixer.init(frequency=mp3.info.sample_rate,
+               size=-16, channels=8, buffer=4096)
     mixer.music.load(playlist.get(tkr.ACTIVE))
     var.set(playlist.get(tkr.ACTIVE))
     mixer.music.play()
