@@ -51,6 +51,7 @@ def file():
     for item in songlist:
         if item.endswith('.mp3') or item.endswith('.wav') or item.endswith('.ogg'):
             songlist1.append(item)
+    songlist1.sort()
     for item in songlist1:
         pos = 0
         playlist.insert(pos, item)
