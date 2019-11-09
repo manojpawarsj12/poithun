@@ -7,7 +7,10 @@ from tkinter import filedialog, simpledialog
 
 
 def play():
-    mixer.init(frequency=44100, size=-16, channels=8, buffer=4096)
+    mp3 = mutagen.mp3.MP3(playlist.get(tkr.ACTIVE))
+    print(mp3.info.sample_rate)
+    mixer.init(frequency=mp3.info.sample_rate,
+               size=-16, channels=8, buffer=4096)
     mixer.music.load(playlist.get(tkr.ACTIVE))
     var.set(playlist.get(tkr.ACTIVE))
     mixer.music.play()
@@ -51,10 +54,12 @@ def file():
     for item in songlist:
         if item.endswith('.mp3') or item.endswith('.wav') or item.endswith('.ogg'):
             songlist1.append(item)
+    songlist1.sort(reverse=True)
     for item in songlist1:
         pos = 0
         playlist.insert(pos, item)
         pos += 1
+    del songlist
 
 
 def downloads():
